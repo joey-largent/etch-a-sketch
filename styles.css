@@ -34,6 +34,7 @@ html, body {
 .divCell {
     border: none;
     box-sizing: border-box;
+    cursor: cell;
 }
 
 .controlPanel {
@@ -69,6 +70,7 @@ button {
     color: #e5d796;
     border: none;
     cursor: pointer;
+    box-sizing: border-box;
 }
 
 button:hover {
@@ -77,13 +79,14 @@ button:hover {
 
 button:active {
     box-shadow: 0 5px #044148;
-    transform: translateY(5px);
+    transform: translateY(1px);
 }
 
 .brushButton {
-    width: 31.25px; /* Default width */
-    height: 31.25px; /* Default height */
     display: inline-block;
+    box-sizing: border-box;
+    width: 31.25px;
+    height: 31.25px;
 }
 
 .brushButton.active {
@@ -150,22 +153,31 @@ input:checked + .slider:before {
 }
 
 .largeBrush {
-    border: none;
-    background-color: #8b7617; 
     width: 31.25px;
     height: 31.25px;
 }
 
 .medBrush {
-    border: none;
-    background-color: #8b7617;
     width: 16.7px;
     height: 16.7px;
 }
 
 .smallBrush {
-    border: none;
-    background-color: #8b7617;
+    width: 10px;
+    height: 10px;
+}
+
+.largeBrush.active {
+    width: 31.25px;
+    height: 31.25px;
+}
+
+.medBrush.active {
+    width: 16.7px;
+    height: 16.7px;
+}
+
+.smallBrush.active {
     width: 10px;
     height: 10px;
 }

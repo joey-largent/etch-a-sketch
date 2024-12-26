@@ -1,7 +1,5 @@
 //smallBrush button still changes size when selected
-//still errors when changing between brushes (does not change both when color is on and off)
-//still occassional errors where changing grid size does not delete grid continue
-
+//when small grid overflows below (need dynamic resizing of inner grid itself)
 
 const body = document.querySelector("body");
 
@@ -66,9 +64,9 @@ controlPanel.appendChild(randomColorToggle);
 controlPanel.appendChild(resetBtn);
 
 
-
 //CREATE GRID + DYNAMIC SIZING + HOVER
 let gridSize = 16;
+let isRandomColor = false;
 let gridWidth = 500;
 
 function createGrid() {
@@ -93,43 +91,37 @@ function createGrid() {
     }
 };
 
+//INITIATE
 createGrid();
 
-//RANDOM COLOR TOGGLE
-let isRandomColor = false;
-
-toggleInput.addEventListener('change', () => {
-    isRandomColor = toggleInput.checked;
-    createGrid();
-});
-
+//GENERATE RANDOM COLOR
 function getRandomColor() {
     return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
 //ACTIVE BRUSH
 function setActiveBrush(button) {
-    document.querySelectorAll(".brushButton").forEach((btn) => btn.classList.remove("active"));
+    document.querySelectorAll(".brushButton").forEach((btn) => {
+        btn.classList.remove("active");
+    });
     button.classList.add("active");
 }
 
-//CHANGE BRUSH SIZE
-largeBrush.addEventListener('click', (event) => {
-    gridSize = 16;
+//BRUSH SIZE CLICKS
+function handleBrushClick(button, size) {
+    setActiveBrush(button);
+    gridSize = size;
     createGrid();
-    setActiveBrush(largeBrush);
-});
+}
 
-medBrush.addEventListener('click', (event) => {
-    gridSize = 30;
-    createGrid();
-    setActiveBrush(medBrush)
-});
+largeBrush.addEventListener("click", () => handleBrushClick(largeBrush, 16));
+medBrush.addEventListener("click", () => handleBrushClick(medBrush, 30));
+smallBrush.addEventListener("click", () => handleBrushClick(smallBrush, 50));
 
-smallBrush.addEventListener('click', (event) => {
-    gridSize = 50;
+//RANDOM COLOR TOGGLE
+toggleInput.addEventListener('change', () => {
+    isRandomColor = toggleInput.checked;
     createGrid();
-    setActiveBrush(smallBrush)
 });
 
 //RESET GRID
@@ -138,3 +130,6 @@ resetBtn.addEventListener('click', (event) => {
     toggleInput.checked = false;
     createGrid();
 });
+
+//WINDOW RESIZE HANDLE
+window.addEventListener("resize", createGrid);
