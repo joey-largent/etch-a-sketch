@@ -7,15 +7,15 @@ body.appendChild(grid);
 //BRUSHES
 
 const largeBrush = document.createElement("button");
-grid.classList.add("largeBrush");
+largeBrush.classList.add("largeBrush");
 body.appendChild(largeBrush);
 
 const medBrush = document.createElement("button");
-grid.classList.add("medBrush");
+medBrush.classList.add("medBrush");
 body.appendChild(medBrush);
 
 const smallBrush = document.createElement("button");
-grid.classList.add("smallBrush");
+smallBrush.classList.add("smallBrush");
 body.appendChild(smallBrush);
 
 //RESET BUTTON
@@ -27,23 +27,29 @@ body.appendChild(resetBtn);
 
 //CREATE GRID + DYNAMIC SIZING + HOVER
 let gridSize = 16;
-let gridWidth = 300;
+let gridWidth = 500;
 
 function createGrid() {
     grid.innerHTML = ""
     let cellSize = gridWidth / gridSize;
+
     for (let i = 0; i < (gridSize * gridSize); i++) {
         let divs = document.createElement("div");
         divs.classList.add("divCell");
         divs.style.width = `${cellSize}px`;
         divs.style.height = `${cellSize}px`;
+
+        divs.addEventListener('mouseover', () => {
+            divs.style.backgroundColor = 'black';
+        });
+
         grid.appendChild(divs);
     };
 
-    divs.addEventListener('mouseover', () => {
-        divs.style.backgroundColor = 'black';
-    });
+    
 };
+
+createGrid();
 
 //RESIZE GRID
 largeBrush.addEventListener('click', (event) => {
@@ -52,12 +58,12 @@ largeBrush.addEventListener('click', (event) => {
 });
 
 medBrush.addEventListener('click', (event) => {
-    gridSize = 50;
+    gridSize = 30;
     createGrid();
 });
 
 smallBrush.addEventListener('click', (event) => {
-    gridSize = 100;
+    gridSize = 50;
     createGrid();
 });
 

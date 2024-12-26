@@ -1,11 +1,33 @@
 .masterGrid {
     display: flex;
     flex-wrap: wrap;
-    width: 300px;
-    height: 300px;
+    border: 1px solid black;
+    width: 500px;
+    height: 500px;
 }
 
 .divCell {
-    border: 1px solid black;
+    border: none;
     box-sizing: border-box;
+}
+
+.largeBrush {
+    border: none;
+    background-color: black; 
+    width: 31.25px;
+    height: 31.25px;
+}
+
+.medBrush {
+    border: none;
+    background-color: black;
+    width: 16.7px;
+    height: 16.7px;
+}
+
+.smallBrush {
+    border: none;
+    background-color: black;
+    width: 10px;
+    height: 10px;
 }
