@@ -1,12 +1,27 @@
-html {
+html, body {
     background-color: #e5d796;
     font-family: 'Open Sans';
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
 }
 
 .masterGrid {
     display: flex;
     flex-wrap: wrap;
-    border: 4px solid #8b7617;
+    margin: 0 auto;
+    padding: 10px;
+    border: 5px solid #8b7617;
     width: 500px;
     height: 500px;
 }
@@ -16,18 +31,38 @@ html {
     box-sizing: border-box;
 }
 
-.brushLabel {
+.controlPanel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 20px;
+    min-width: 150px;
+}
+
+h1 {
     color: #8b7617;
     font-size: 1rem;
 }
 
 button {
-    margin: 10px 0px 0px 10px;
+    background-color: #8b7617;
+    color: #e5d796;
+    border: none;
+    cursor: pointer;
 }
 
 button:hover {
-    cursor: pointer;
     background-color: #044148;
+}
+
+button:active {
+    box-shadow: 0 5px #044148;
+    transform: translateY(5px);
+}
+
+.button.active {
+    border: 2px solid #044148;
 }
 
 .resetBtn {
@@ -36,16 +71,56 @@ button:hover {
     color: #e5d796;
     font-weight: 700;
     font-size: 1rem;
+    text-align: center;
     border-radius: 20px;
     box-shadow: 5px 5px 5px #b3971a;
-    padding: 0.5rem;
-    margin: 0.5rem;
-    max-width: 25%;
+    padding: 10px;
+    margin-top: 20px;
 }
 
-.resetBtn:active {
-    box-shadow: 0 5px #044148;
-    transform: translateY(10px);
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #8b7617;
+    transition: 0.4s;
+    border-radius: 30px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #e5d796;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #044148;
+}
+
+input:checked + .slider:before {
+    transform: translateX(28px);
 }
 
 .largeBrush {
