@@ -1,7 +1,6 @@
-//add label for brush size indicator
-//add space between brush sizes
 //add border for when a certain brush size is selected
 //place all buttons in a panel to the left
+//style color selector
 //make grid responsive
 
 
@@ -11,18 +10,28 @@ const grid = document.createElement("div");
 grid.classList.add("masterGrid");
 body.appendChild(grid);
 
+const controlPanel = document.createElement("div");
+controlPanel.classList.add("controlPanel");
+body.insertBefore(controlPanel, grid);
+
 //BRUSHES
+const brushLabel = document.createElement("h1");
+brushLabel.classList.add("brushLabel");
+brushLabel.textContent = "BOYUT:";
+
 const largeBrush = document.createElement("button");
 largeBrush.classList.add("largeBrush");
-body.appendChild(largeBrush);
 
 const medBrush = document.createElement("button");
 medBrush.classList.add("medBrush");
-body.appendChild(medBrush);
 
 const smallBrush = document.createElement("button");
 smallBrush.classList.add("smallBrush");
-body.appendChild(smallBrush);
+
+controlPanel.appendChild(brushLabel);
+controlPanel.appendChild(largeBrush);
+controlPanel.appendChild(medBrush);
+controlPanel.appendChild(smallBrush);
 
 //CREATE GRID + DYNAMIC SIZING + HOVER
 let gridSize = 16;
@@ -39,7 +48,7 @@ function createGrid() {
         divs.style.height = `${cellSize}px`;
 
         divs.addEventListener('mouseover', () => {
-            divs.style.backgroundColor = isRandomColor ? getRandomColor() : 'black';
+            divs.style.backgroundColor = isRandomColor ? getRandomColor() : '#8b7617';
         });
 
         grid.appendChild(divs);
@@ -50,17 +59,11 @@ function createGrid() {
 
 createGrid();
 
-//RESET BUTTON
-const resetBtn = document.createElement("button");
-resetBtn.classList.add("resetBtn");
-resetBtn.textContent = "RESET";
-body.appendChild(resetBtn);
-
 //RANDOM COLOR TOGGLE
 const randomColorToggle = document.createElement("input");
 randomColorToggle.type = "checkbox";
 randomColorToggle.id = "randomColorToggle";
-body.appendChild(randomColorToggle);
+controlPanel.appendChild(randomColorToggle);
 
 let isRandomColor = false;
 
@@ -72,6 +75,12 @@ randomColorToggle.addEventListener('change', () => {
 function getRandomColor() {
     return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
+
+//RESET BUTTON
+const resetBtn = document.createElement("button");
+resetBtn.classList.add("resetBtn");
+resetBtn.textContent = "SIFIRLA";
+controlPanel.appendChild(resetBtn);
 
 //RESIZE GRID
 largeBrush.addEventListener('click', (event) => {
