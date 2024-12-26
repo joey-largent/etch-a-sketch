@@ -1,7 +1,6 @@
-//change base theme colors to a gentle dark pastel
 //add label for brush size indicator
 //add space between brush sizes
-//style reset button
+//add border for when a certain brush size is selected
 //place all buttons in a panel to the left
 //make grid responsive
 
@@ -53,7 +52,7 @@ createGrid();
 
 //RESET BUTTON
 const resetBtn = document.createElement("button");
-grid.classList.add("resetBtn");
+resetBtn.classList.add("resetBtn");
 resetBtn.textContent = "RESET";
 body.appendChild(resetBtn);
 
