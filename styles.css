@@ -1,0 +1,10 @@
+.masterGrid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 0 auto;
+}
+
+.divCell {
+    border: solid;
+}
