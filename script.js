@@ -18,6 +18,13 @@ const smallBrush = document.createElement("button");
 grid.classList.add("smallBrush");
 body.appendChild(smallBrush);
 
+//RESET BUTTON
+const resetBtn = document.createElement("button");
+grid.classList.add("resetBtn");
+resetBtn.textContent = "RESET";
+body.appendChild(resetBtn);
+
+
 //CREATE GRID + DYNAMIC SIZING + HOVER
 let gridSize = 16;
 let gridWidth = 300;
@@ -54,7 +61,7 @@ smallBrush.addEventListener('click', (event) => {
     createGrid();
 });
 
-
-//HOVER COLOR
-
-
+//RESET GRID
+resetBtn.addEventListener('click', (event) => {
+    createGrid();
+});
