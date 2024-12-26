@@ -1,8 +1,8 @@
 html, body {
     background-color: #e5d796;
     font-family: 'Open Sans';
-    margin: 0;
-    padding: 0;
+    margin: 20px;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,19 +11,24 @@ html, body {
 
 .wrapper {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
     gap: 20px;
+    width: 100%;
     padding: 20px;
 }
 
 .masterGrid {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 auto;
+    margin: 10px auto;
     padding: 10px;
     border: 5px solid #8b7617;
-    width: 500px;
-    height: 500px;
+    width: 80vw;
+    height: 80vw;
+    max-width: 500px;
+    max-height: 500px;
 }
 
 .divCell {
@@ -38,6 +43,20 @@ html, body {
     gap: 15px;
     padding: 20px;
     min-width: 150px;
+}
+
+@media (max-width: 1000px) {
+    .wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .controlPanel {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
 }
 
 h1 {
@@ -61,11 +80,19 @@ button:active {
     transform: translateY(5px);
 }
 
-.button.active {
+.brushButton {
+    width: 31.25px; /* Default width */
+    height: 31.25px; /* Default height */
+    display: inline-block;
+}
+
+.brushButton.active {
     border: 2px solid #044148;
+    box-sizing: border-box;
 }
 
 .resetBtn {
+    align-self: flex-start;
     border: none;
     background-color: #8b7617;
     color: #e5d796;
@@ -74,8 +101,7 @@ button:active {
     text-align: center;
     border-radius: 20px;
     box-shadow: 5px 5px 5px #b3971a;
-    padding: 10px;
-    margin-top: 20px;
+    padding: 15px 20px;
 }
 
 .switch {

@@ -1,6 +1,6 @@
-//border selector on colors does not work
-//occassional errors where changing size does not delete grid continue
-//when making the screen small, the control panel remains on the left and the grid has zero right padding; I want the control panel to pop to the top of the screen and the box to lock at its current size and not get any smaller.
+//smallBrush button still changes size when selected
+//still errors when changing between brushes (does not change both when color is on and off)
+//still occassional errors where changing grid size does not delete grid continue
 
 
 const body = document.querySelector("body");
@@ -34,17 +34,49 @@ const smallBrush = document.createElement("button");
 smallBrush.classList.add("smallBrush");
 smallBrush.classList.add("brushButton");
 
+//RESET BUTTON
+const resetBtn = document.createElement("button");
+resetBtn.classList.add("resetBtn");
+resetBtn.textContent = "SIFIRLA";
+
+//COLOR SWITCH
+const colorLabel = document.createElement("h1");
+colorLabel.textContent = "RENKLİ:";
+
+const randomColorToggle = document.createElement("label");
+randomColorToggle.classList.add("switch");
+
+const toggleInput = document.createElement("input");
+toggleInput.type = "checkbox";
+
+const slider = document.createElement("span");
+slider.classList.add("slider");
+
+//APPEND THE CHILDREN
 controlPanel.appendChild(brushLabel);
 controlPanel.appendChild(largeBrush);
 controlPanel.appendChild(medBrush);
 controlPanel.appendChild(smallBrush);
+
+controlPanel.appendChild(colorLabel);
+randomColorToggle.appendChild(toggleInput);
+randomColorToggle.appendChild(slider);
+controlPanel.appendChild(randomColorToggle);
+
+controlPanel.appendChild(resetBtn);
+
+
 
 //CREATE GRID + DYNAMIC SIZING + HOVER
 let gridSize = 16;
 let gridWidth = 500;
 
 function createGrid() {
-    grid.innerHTML = "";
+    if (grid) {
+        grid.innerHTML = "";
+    }
+
+    let gridActualWidth = grid.offsetWidth;
     let cellSize = gridWidth / gridSize;
 
     for (let i = 0; i < gridSize * gridSize; i++) {
@@ -64,24 +96,6 @@ function createGrid() {
 createGrid();
 
 //RANDOM COLOR TOGGLE
-const colorLabel = document.createElement("h1");
-colorLabel.textContent = "RENKLİ:";
-
-const randomColorToggle = document.createElement("label");
-randomColorToggle.classList.add("switch");
-
-const toggleInput = document.createElement("input");
-toggleInput.type = "checkbox";
-
-
-const slider = document.createElement("span");
-slider.classList.add("slider");
-
-controlPanel.appendChild(colorLabel);
-randomColorToggle.appendChild(toggleInput);
-randomColorToggle.appendChild(slider);
-controlPanel.appendChild(randomColorToggle);
-
 let isRandomColor = false;
 
 toggleInput.addEventListener('change', () => {
@@ -93,19 +107,13 @@ function getRandomColor() {
     return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
-//RESET BUTTON
-const resetBtn = document.createElement("button");
-resetBtn.classList.add("resetBtn");
-resetBtn.textContent = "SIFIRLA";
-controlPanel.appendChild(resetBtn);
-
 //ACTIVE BRUSH
 function setActiveBrush(button) {
     document.querySelectorAll(".brushButton").forEach((btn) => btn.classList.remove("active"));
     button.classList.add("active");
 }
 
-//RESIZE GRID
+//CHANGE BRUSH SIZE
 largeBrush.addEventListener('click', (event) => {
     gridSize = 16;
     createGrid();
@@ -123,11 +131,6 @@ smallBrush.addEventListener('click', (event) => {
     createGrid();
     setActiveBrush(smallBrush)
 });
-
-function setActiveBrush(button) {
-    document.querySelectorAll('.brushButton').forEach(btn => btn.classList.remove('active'));
-    button.classList.add('active');
-}
 
 //RESET GRID
 resetBtn.addEventListener('click', (event) => {
