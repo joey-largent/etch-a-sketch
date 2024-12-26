@@ -1,5 +1,7 @@
 //smallBrush button still changes size when selected
 //when small grid overflows below (need dynamic resizing of inner grid itself)
+//add sound effects to mouse hover
+//add sound on/off button next to color
 
 const body = document.querySelector("body");
 
